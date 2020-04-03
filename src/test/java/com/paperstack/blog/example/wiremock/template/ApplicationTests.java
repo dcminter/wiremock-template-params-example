@@ -1,30 +1,41 @@
 package com.paperstack.blog.example.wiremock.template;
 
+/*
+Required only if the test configuration is being used:
+
 import com.github.tomakehurst.wiremock.extension.responsetemplating.ResponseTemplateTransformer;
-import org.junit.Before;
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.cloud.contract.wiremock.AutoConfigureWireMock;
+import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.cloud.contract.wiremock.WireMockConfigurationCustomizer;
 import org.springframework.context.annotation.Bean;
+ */
 
-import static com.github.tomakehurst.wiremock.client.WireMock.*;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.cloud.contract.wiremock.AutoConfigureWireMock;
+
+import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
+import static com.github.tomakehurst.wiremock.client.WireMock.get;
+import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
+import static com.github.tomakehurst.wiremock.client.WireMock.urlPathEqualTo;
 import static io.restassured.RestAssured.when;
 import static org.hamcrest.core.Is.is;
+import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = RANDOM_PORT)
 @AutoConfigureWireMock(port = 0)
 class ApplicationTests {
 
-	private static class ApplicationTestConfiguration {
+	/* NOT required because we explicitly enable the response-template transformer in the test below
+	@TestConfiguration
+	public static class ApplicationTestConfiguration {
 		@Bean
 		public WireMockConfigurationCustomizer customizer() {
-			// Because we're setting the "global" flag to false in the ResponseTemplateTransformer's constructor
-			// our stubs will need to explicitly enable the "response-template" transformers (see below)
-			return config -> config.extensions(new ResponseTemplateTransformer(false));
+			return config -> config.extensions(new ResponseTemplateTransformer(true));
 		}
 	}
+	*/
 
 	@LocalServerPort
 	private int serverPort;

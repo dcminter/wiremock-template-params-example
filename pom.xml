@@ -16,6 +16,14 @@
 
 	<properties>
 		<java.version>11</java.version>
+		<spring.cloud.contract.wiremock.version>2.2.2.RELEASE</spring.cloud.contract.wiremock.version>
+		<junit.version>4.13</junit.version>
+
+		<!-- I encountered this bug:
+				https://github.com/rest-assured/rest-assured/issues/1175
+				https://github.com/rest-assured/rest-assured/issues/1220
+			 when attempting to use the current latest 4.3.0 with JDK-11 -->
+		<rest.assured.version>3.3.0</rest.assured.version>
 	</properties>
 
 	<dependencies>
@@ -27,23 +35,21 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-contract-wiremock</artifactId>
-			<version>2.2.2.RELEASE</version>
+			<version>${spring.cloud.contract.wiremock.version}</version>
 			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.13</version>
+			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>io.rest-assured</groupId>
 			<artifactId>rest-assured</artifactId>
-			<!-- I encountered this bug: https://github.com/rest-assured/rest-assured/issues/1175 when attempting to
-			     use the current latest 4.3.0 with JDK-11 -->
-			<version>3.3.0</version>
+			<version>${rest.assured.version}</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -68,5 +74,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>

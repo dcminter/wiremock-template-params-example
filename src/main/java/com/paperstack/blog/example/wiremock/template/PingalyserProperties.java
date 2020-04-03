@@ -5,19 +5,20 @@ import org.springframework.boot.context.properties.ConstructorBinding;
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @ConstructorBinding
 @Validated
 @ConfigurationProperties("pingalyser")
 public class PingalyserProperties {
 
-    @NotEmpty
     private final String targetUri;
 
-    public PingalyserProperties(final String targetUri) {
+    public PingalyserProperties(@NotEmpty final String targetUri) {
         this.targetUri = targetUri;
     }
 
+    @NotNull
     public String getTargetUri() {
         return targetUri;
     }
