@@ -17,7 +17,7 @@
 	<properties>
 		<java.version>11</java.version>
 		<spring.cloud.contract.wiremock.version>2.2.2.RELEASE</spring.cloud.contract.wiremock.version>
-		<junit.version>4.13</junit.version>
+		<junit.version>4.13.1</junit.version>
 
 		<!-- I encountered this bug:
 				https://github.com/rest-assured/rest-assured/issues/1175
